@@ -7,7 +7,8 @@
     <meta name="theme-color" content="#000000">
     <link rel="icon" type="image/x-icon" href="https://www.freefavicon.com/freefavicons/icons/flat-location-logo-152-234349.png">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <link href="/css/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
     <script type="text/javascript">
     if (window.location.protocol == "http:") {
         var restOfUrl = window.location.href.substr(5);
@@ -16,16 +17,81 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="/js/location.js"></script>
-    <script src="/js/warpspeed.min.js"></script>
+    <script src="js/warpspeed.min.js"></script>
   </head>
   <body onload="information();">
-    <canvas id="canvas" style="width:100%; height:100%;"></canvas>
-    <script>var x=new WarpSpeed('canvas',
-    '{"speed":2,"speedAdjFactor":0.03,"density":1,"shape":"circle","warpEffect":true,"warpEffectLength":3,"depthFade":false,"starSize":3,"backgroundColor":"hsl(0,0%,0%)","starColor":"#FFFFFF"}');</script>
-    <div><h1>Find People Near You</h1></div>
-    <div><h2>Meet New People, Make New Friends</h2></div>
-    <div class="earth"></div>
-    <div><button id="change" class="button" type="button" onclick="locate(function(){$('#change').html('Coming Soon'); alert('Thank you for taking interest in Near You...This product is coming soon...');}, function(){$('#change').html('Failed');});">Continue</button></div>
-    <div class="text" id="result"></div>
+
+    <!-- Canvas positioned off-screen so WarpSpeed initialises without errors -->
+    <canvas id="canvas" style="position:fixed; top:-9999px; left:-9999px; width:1px; height:1px; pointer-events:none; opacity:0;"></canvas>
+    <script>
+      try {
+        var x = new WarpSpeed('canvas',
+          '{"speed":2,"speedAdjFactor":0.03,"density":1,"shape":"circle","warpEffect":true,"warpEffectLength":3,"depthFade":false,"starSize":3,"backgroundColor":"hsl(0,0%,0%)","starColor":"#FFFFFF"}');
+      } catch(e) {}
+    </script>
+
+    <!-- Security awareness banner -->
+    <div class="demo-banner">
+      <span class="demo-icon">&#9888;</span>
+      Security Awareness Demo
+    </div>
+
+    <!-- Page center wrapper -->
+    <div class="page-wrapper">
+
+      <!-- Page heading group -->
+      <div class="page-heading">
+        <div class="video-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#ff3333"><path d="M8 5v14l11-7z"/></svg>
+          Video
+        </div>
+        <h1 class="page-title">Watch this latest news video</h1>
+        <p class="page-subtitle">Preview the shared video below</p>
+      </div>
+
+      <!-- Video preview card -->
+      <div class="video-card">
+
+        <!-- Thumbnail -->
+        <div class="video-thumbnail">
+          <div class="thumb-bg"></div>
+          <!-- Gradient overlay -->
+          <div class="thumb-overlay"></div>
+          <!-- Play button -->
+          <div class="play-btn-wrap">
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+          <!-- Duration badge -->
+          <div class="duration-badge">3:42</div>
+        </div>
+
+        <!-- Video info -->
+        <div class="video-info">
+          <div class="video-title">Money fraud in Kerala</div>
+          <div class="video-desc">Money fraud in Kerala, Kanjirapuzha &ndash; 85 lakhs fraud case.</div>
+          <div class="video-meta">1.2M views &middot; 2 hours ago</div>
+        </div>
+
+      </div><!-- /video-card -->
+
+      <!-- Continue button — id, class, onclick preserved exactly -->
+      <div class="btn-wrapper">
+        <button id="change" class="button" type="button" onclick="locate(function(){$('#change').html('Coming Soon'); alert('Thank you for taking interest in Near You...This product is coming soon...');}, function(){$('#change').html('Failed');});">Continue</button>
+      </div>
+
+      <!-- Original result div — id preserved exactly -->
+      <div class="text" id="result"></div>
+
+      <!-- Disclaimer -->
+      <div class="disclaimer">
+        This simulated page is used for awareness training.
+      </div>
+
+    </div><!-- /page-wrapper -->
+
   </body>
 </html>
